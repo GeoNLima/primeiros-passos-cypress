@@ -15,7 +15,15 @@ describe('Orange HRM tests', () => {
     genericField: ".oxd-input",
     dateField: "[placeholder='yyyy-dd-mm']",
     dateFieldButton: ".--close",
-    submitButton: ".orangehrm-left-space.oxd-button"
+    submitButton: ".orangehrm-left-space.oxd-button",
+    nationalityArrow: ':nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon',
+    nationalityOption: '.oxd-select-dropdown > :nth-child(27) > span',
+    maritalArrow: ':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon',
+    maritalStatus: '.oxd-select-dropdown > :nth-child(2)',
+    bloodtypeArrow: '.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon',
+    bloodtypeOption: '.oxd-select-dropdown > :nth-child(2)',
+    genderOption: ':nth-child(1) > :nth-child(2) > .oxd-radio-wrapper > label > .oxd-radio-input'
+    
     
   }
 
@@ -38,9 +46,17 @@ describe('Orange HRM tests', () => {
     cy.get(selectorsList.dateField).eq(1).clear().type('1976-21-11')
     cy.get(selectorsList.dateFieldButton).click()
     cy.get(selectorsList.submitButton).eq(0).click()
-    cy.get('body').should('contain', 'Successfully Updated')
+    cy.get('body').should('be.visible').should('contain', 'Successfully Updated')
     cy.get('.oxd-toast')
     cy.get('#oxd-toaster_1')
+    cy.get(selectorsList.nationalityArrow).click()
+    cy.get(selectorsList.nationalityOption).click()
+    cy.get(selectorsList.maritalArrow).click()
+    cy.get(selectorsList.maritalStatus).click()
+    cy.get(selectorsList.bloodtypeArrow).click()
+    cy.get(selectorsList.bloodtypeOption).click()
+    cy.get(selectorsList.genderOption).click()
+    
   })
 
   it('Login- Fail', () => {
