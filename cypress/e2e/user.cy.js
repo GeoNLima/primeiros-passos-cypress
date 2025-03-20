@@ -19,10 +19,11 @@ describe('Orange HRM tests', () => {
     
     menuPage.accessMyInfo()
 
-    myinfoPage.accessMyInfo()
-    
-
-       
+    myinfoPage.fillpersonalDetails ('Dino', 'Silva', 'Sauro')
+    myinfoPage.fillEmployeeDetails('dinossaur', '66666', '7788991','2025-12-25', '1976-11-21')
+    myinfoPage.fillStatus()
+    myinfoPage.saveForm()
+           
   })
 
   it('Login- Fail', () => {

@@ -5,6 +5,7 @@ class MyinfoPage {
         const selectors = {
         
             firstNameField: "[name='firstName']",
+            middleNameField: ".orangehrm-middlename",
             lastNameField: "[name='lastName']",
             genericField: ".oxd-input",
             dateField: "[placeholder='yyyy-dd-mm']",
@@ -22,30 +23,41 @@ class MyinfoPage {
         return selectors
     }
 
-    accessMyInfo () {
-    cy.get(this.selectorsList().firstNameField).clear().type('Astrogildo')
-    cy.get(this.selectorsList().lastNameField).clear().type('SilvaSauro')
-    cy.get(this.selectorsList().genericField).eq(4).clear().type('dino')
-    cy.get(this.selectorsList().genericField).eq(5).clear().type('54321')
-    cy.get(this.selectorsList().genericField).eq(6).clear().type('66666')
-    cy.get(this.selectorsList().dateField).eq(0).clear().type('2025-20-12')
-    cy.get(this.selectorsList().dateFieldButton).click()
-    cy.get(this.selectorsList().dateField).eq(1).clear().type('1976-21-11')
-    cy.get(this.selectorsList().dateFieldButton).click()
-    cy.get(this.selectorsList().submitButton).eq(0).click()
-    cy.get('body').should('be.visible').should('contain', 'Successfully Updated')
-    cy.get('.oxd-toast')
-    cy.get('#oxd-toaster_1')
-    cy.get(this.selectorsList().nationalityArrow).click()
-    cy.get(this.selectorsList().nationalityOption).click()
-    cy.get(this.selectorsList().maritalArrow).click()
-    cy.get(this.selectorsList().maritalStatus).click()
-    cy.get(this.selectorsList().bloodtypeArrow).click()
-    cy.get(this.selectorsList().bloodtypeOption).click()
-    cy.get(this.selectorsList().genderOption).click()
+    fillpersonalDetails (firstName, middleName, lastName) {
+        cy.get(this.selectorsList().firstNameField).clear().type(firstName)
+        cy.get(this.selectorsList().middleNameField).clear().type(middleName)
+        cy.get(this.selectorsList().lastNameField).clear().type(lastName)
     }
 
-   
+   fillEmployeeDetails (employeeID, otherId, driversLicense, licenseDate, birthDate) {
+        cy.get(this.selectorsList().genericField).eq(4).clear().type(employeeID)
+        cy.get(this.selectorsList().genericField).eq(5).clear().type(otherId)
+        cy.get(this.selectorsList().genericField).eq(6).clear().type(driversLicense)
+        cy.get(this.selectorsList().dateField).eq(0).clear().type(licenseDate)
+        cy.get(this.selectorsList().dateFieldButton).click()
+        cy.get(this.selectorsList().dateField).eq(1).clear().type(birthDate)
+        cy.get(this.selectorsList().dateFieldButton).click()
+                
+    }
+
+    saveForm () {
+        cy.get(this.selectorsList().submitButton).eq(0).click()
+        cy.get('body').should('be.visible').should('contain', 'Successfully Updated')
+        cy.get('.oxd-toast')
+        cy.get('#oxd-toaster_1')
+    }
+
+    fillStatus () {
+        cy.get(this.selectorsList().nationalityArrow).click()
+        cy.get(this.selectorsList().nationalityOption).click()
+        cy.get(this.selectorsList().maritalArrow).click()
+        cy.get(this.selectorsList().maritalStatus).click()
+        cy.get(this.selectorsList().bloodtypeArrow).click()
+        cy.get(this.selectorsList().bloodtypeOption).click()
+        cy.get(this.selectorsList().genderOption).click()
+    }
+
+  
 }
 
 export default MyinfoPage
