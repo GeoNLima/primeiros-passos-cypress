@@ -3,19 +3,19 @@ import LoginPage from '../pages/loginPage'
 import DashboardPage  from '../pages/dashboardPage'
 import MenuPage from '../pages/menuPage'
 import MyinfoPage from '../pages/myinfoPage'
-import LoginFailPage from '../pages/loginfailPage'
+
 
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const menuPage = new MenuPage()
 const myinfoPage = new MyinfoPage()
-const loginfailPage = new LoginFailPage()
+
 
 describe('Orange HRM tests', () => {
      
   it('User Info Update- Success', () => {
     loginPage.acessLoginPage()
-    loginPage.loginWithUser(userData.userSuccess.username, userData.userSuccess.password)
+    loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
 
     dashboardPage.checkDashboardPage()
     
@@ -29,10 +29,9 @@ describe('Orange HRM tests', () => {
   })
 
   it('Login- Fail', () => {
-    
-    loginfailPage.acessLoginPage()
-    loginfailPage.loginWithUser('dino', 'sauro')
-
+    loginPage.acessLoginPage()
+    loginPage.loginWithAnyUser(userData.userFail.username, userData.userFail.password)
+    loginPage.checkAcessInvalid()
 
   })
 
