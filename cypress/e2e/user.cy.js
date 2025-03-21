@@ -4,7 +4,9 @@ import DashboardPage  from '../pages/dashboardPage'
 import MenuPage from '../pages/menuPage'
 import MyinfoPage from '../pages/myinfoPage'
 
+const Chance = require('chance')
 
+const chance = new Chance()
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const menuPage = new MenuPage()
@@ -21,8 +23,8 @@ describe('Orange HRM tests', () => {
     
     menuPage.accessMyInfo()
 
-    myinfoPage.fillpersonalDetails('Dino', 'Silva', 'Sauro')
-    myinfoPage.fillEmployeeDetails('dinossaur', '66666', '7788991','2025-12-25', '1976-11-21')
+    myinfoPage.fillpersonalDetails(chance.first({ gender: "male" }), 'Hitchcock', chance.last())
+    myinfoPage.fillEmployeeDetails(chance.animal({type: 'zoo'}), chance.cpf() , chance.integer(),'2025-12-25', '1976-11-21')
     myinfoPage.fillStatus()
     myinfoPage.saveForm()
            
